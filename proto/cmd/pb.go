@@ -1,11 +1,12 @@
 /*
 Copyright © 2026 NAME HERE <EMAIL ADDRESS>
-
 */
 package cmd
 
 import (
 	"fmt"
+	"os"
+	"os/exec"
 
 	"github.com/spf13/cobra"
 )
@@ -21,7 +22,23 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("pb called")
+		protocCmd := exec.Command(
+			"protoc",
+			"--go_out=.",
+			"--go_opt=paths=source_relative",
+			"--go-grpc_out=.",
+			"--go-grpc_opt=paths=source_relative",
+			"cmd/goods.proto",
+		)
+		protocCmd.Stdout = os.Stdout
+		protocCmd.Stderr = os.Stderr
+
+		if err := protocCmd.Run(); err != nil {
+
+			cobra.CheckErr(fmt.Errorf("生成PB文件失败: %v", err))
+		}
+		// 成功消息用cmd.Println输出，而非cobra.CheckErr
+		cmd.Println("PB文件生成成功！")
 	},
 }
 

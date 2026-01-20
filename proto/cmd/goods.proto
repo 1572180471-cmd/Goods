@@ -1,4 +1,4 @@
-﻿syntax = "proto3";
+syntax = "proto3";
 
 option go_package ="./goods";
 
@@ -152,7 +152,7 @@ message SearchOrderResp {
 // Rpc Func
 // ------------------------------------ 
 
-service { 
+service GoodsProduct{
 
 	 //-----------------------goods----------------------- 
 	 rpc AddGoods(AddGoodsReq) returns (AddGoodsResp); 
