@@ -20,11 +20,11 @@ profile.cov
 # Dependency directories (remove the comment below to include it)
 # vendor/
 
-# Go workspace file
+# Go workspace rustfs
 go.work
 go.work.sum
 
-# env file
+# env rustfs
 .env
 
 # Editor/IDE

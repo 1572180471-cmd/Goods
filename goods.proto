@@ -1,0 +1,170 @@
+﻿syntax = "proto3";
+
+option go_package ="./goods";
+
+package goods;
+
+// ------------------------------------ 
+// Messages
+// ------------------------------------ 
+
+//--------------------------------goods--------------------------------
+message Goods {
+  int64 id = 1; //id
+  int64 createdAt = 2; //createdAt
+  int64 updatedAt = 3; //updatedAt
+  int64 deletedAt = 4; //deletedAt
+  string title = 5; //title
+  double price = 6; //price
+  int64 num = 7; //num
+  string info = 8; //info
+}
+
+message AddGoodsReq {
+  int64 createdAt = 1; //createdAt
+  int64 updatedAt = 2; //updatedAt
+  int64 deletedAt = 3; //deletedAt
+  string title = 4; //title
+  double price = 5; //price
+  int64 num = 6; //num
+  string info = 7; //info
+}
+
+message AddGoodsResp {
+}
+
+message UpdateGoodsReq {
+  int64 id = 1; //id
+  int64 createdAt = 2; //createdAt
+  int64 updatedAt = 3; //updatedAt
+  int64 deletedAt = 4; //deletedAt
+  string title = 5; //title
+  double price = 6; //price
+  int64 num = 7; //num
+  string info = 8; //info
+}
+
+message UpdateGoodsResp {
+}
+
+message DelGoodsReq {
+  int64 id = 1; //id
+}
+
+message DelGoodsResp {
+}
+
+message GetGoodsByIdReq {
+  int64 id = 1; //id
+}
+
+message GetGoodsByIdResp {
+  Goods goods = 1; //goods
+}
+
+message SearchGoodsReq {
+  int64 page = 1; //page
+  int64 limit = 2; //limit
+  int64 id = 3; //id
+  int64 createdAt = 4; //createdAt
+  int64 updatedAt = 5; //updatedAt
+  int64 deletedAt = 6; //deletedAt
+  string title = 7; //title
+  double price = 8; //price
+  int64 num = 9; //num
+  string info = 10; //info
+}
+
+message SearchGoodsResp {
+  repeated Goods goods = 1; //goods
+}
+
+//--------------------------------order--------------------------------
+message Order {
+  int64 id = 1; //id
+  int64 createdAt = 2; //createdAt
+  int64 updatedAt = 3; //updatedAt
+  int64 deletedAt = 4; //deletedAt
+  int64 goodsId = 5; //商品名称
+  double price = 6; //价格
+  int64 num = 7; //数量
+}
+
+message AddOrderReq {
+  int64 createdAt = 1; //createdAt
+  int64 updatedAt = 2; //updatedAt
+  int64 deletedAt = 3; //deletedAt
+  int64 goodsId = 4; //商品名称
+  double price = 5; //价格
+  int64 num = 6; //数量
+}
+
+message AddOrderResp {
+}
+
+message UpdateOrderReq {
+  int64 id = 1; //id
+  int64 createdAt = 2; //createdAt
+  int64 updatedAt = 3; //updatedAt
+  int64 deletedAt = 4; //deletedAt
+  int64 goodsId = 5; //商品名称
+  double price = 6; //价格
+  int64 num = 7; //数量
+}
+
+message UpdateOrderResp {
+}
+
+message DelOrderReq {
+  int64 id = 1; //id
+}
+
+message DelOrderResp {
+}
+
+message GetOrderByIdReq {
+  int64 id = 1; //id
+}
+
+message GetOrderByIdResp {
+  Order order = 1; //order
+}
+
+message SearchOrderReq {
+  int64 page = 1; //page
+  int64 limit = 2; //limit
+  int64 id = 3; //id
+  int64 createdAt = 4; //createdAt
+  int64 updatedAt = 5; //updatedAt
+  int64 deletedAt = 6; //deletedAt
+  int64 goodsId = 7; //商品名称
+  double price = 8; //价格
+  int64 num = 9; //数量
+}
+
+message SearchOrderResp {
+  repeated Order order = 1; //order
+}
+
+
+
+// ------------------------------------ 
+// Rpc Func
+// ------------------------------------ 
+
+service { 
+
+	 //-----------------------goods----------------------- 
+	 rpc AddGoods(AddGoodsReq) returns (AddGoodsResp); 
+	 rpc UpdateGoods(UpdateGoodsReq) returns (UpdateGoodsResp); 
+	 rpc DelGoods(DelGoodsReq) returns (DelGoodsResp); 
+	 rpc GetGoodsById(GetGoodsByIdReq) returns (GetGoodsByIdResp); 
+	 rpc SearchGoods(SearchGoodsReq) returns (SearchGoodsResp); 
+	 //-----------------------order----------------------- 
+	 rpc AddOrder(AddOrderReq) returns (AddOrderResp); 
+	 rpc UpdateOrder(UpdateOrderReq) returns (UpdateOrderResp); 
+	 rpc DelOrder(DelOrderReq) returns (DelOrderResp); 
+	 rpc GetOrderById(GetOrderByIdReq) returns (GetOrderByIdResp); 
+	 rpc SearchOrder(SearchOrderReq) returns (SearchOrderResp); 
+
+}
